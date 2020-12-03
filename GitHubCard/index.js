@@ -1,9 +1,16 @@
+import axios from 'axios';
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-
+const test = axios
+  .get('https://api.github.com/users/byadham')
+  .then ((result) => {
+    const personData = result.data
+  });
+  
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -33,7 +40,6 @@ const followersArray = [];
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
-
     <div class="card">
       <img src={image url of user} />
       <div class="card-info">
@@ -49,6 +55,35 @@ const followersArray = [];
       </div>
     </div>
 */
+
+//Select the cards div and assign it to a variable to append to later
+const githubCards = document.querySelector(".cards");
+console.log(githubCards);
+
+//Create elements with DOM methods & append them to their respective parents
+function cardMaker (Obj){
+  //Create a single card -parent- div
+  const cardDiv = document.createElement("div");
+    //Append this parent div of a single card to the cards super parent div
+    githubCards.appendChild(cardDiv);
+    //Create an image
+    const profileImage = document.createElement("img");
+        //Give the image source
+      profileImage.src= Obj.avatar_url;
+        //Append the image to its parent div cardDiv
+        cardDiv.appendChild(profileImage);
+    //Create a div for card info
+    const cardInfoDiv = document.createElement("div");
+    profileImage.classList.add("header");
+      //Append cardInfo to its parent cardDiv div
+      cardDiv.appendChild(cardInfoDiv);
+      //Create h3, give it a class and define its text content
+      const name= document.createElement("h3");
+      name.classList.add("name");
+      name.textContent = ("data.name");
+
+}
+
 
 /*
   List of LS Instructors Github username's:
